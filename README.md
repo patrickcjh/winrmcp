@@ -21,7 +21,7 @@ from winrmcp import Client
 client = Client('my-windows-machine.com', auth=('CleverUser', 'cleverPassword'))
 
 with client.shell() as shell:
-    out, _ = shell.check_cmd(['ipconfig', '/all'])
+    out, _ = shell.check_cmd('ipconfig', '/all')
     print(out)
 
     script = """$strComputer = $Host
