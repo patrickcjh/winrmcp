@@ -2,7 +2,7 @@ import uuid
 import base64
 
 
-def cleanup_content(shell, file_path : str):
+def cleanup_content(shell, file_path: str):
 
     shell.check_ps(f'''
 $tmp_file_path = [System.IO.Path]::GetFullPath("{file_path}")
@@ -11,7 +11,7 @@ if (Test-Path $tmp_file_path) {{
 }}''')
 
 
-def restore_content(shell, from_path : str, to_path : str):
+def restore_content(shell, from_path: str, to_path: str):
     shell.check_ps(f'''
 $tmp_file_path = [System.IO.Path]::GetFullPath("{from_path}")
 $dest_file_path = [System.IO.Path]::GetFullPath("{to_path}".Trim("'"))
@@ -46,7 +46,7 @@ if (Test-Path $tmp_file_path) {{
 }}''')
 
 
-def upload_chunks(shell, file_path : str, max_chunks : int, fileobj):
+def upload_chunks(shell, file_path: str, max_chunks: int, fileobj):
     # Upload the file in chunks to get around the Windows command line size limit.
     # Base64 encodes each set of three bytes into four bytes. In addition the output
     # is padded to always be a multiple of four.
@@ -77,7 +77,7 @@ def upload_chunks(shell, file_path : str, max_chunks : int, fileobj):
     return False  # not yet done, just max_chunks exhausted
 
 
-def do_copy(client, fileobj, to_path : str, max_operations_per_shell=0):
+def do_copy(client, fileobj, to_path: str, max_operations_per_shell=0):
     temp_file = f'pywinrmcp-{uuid.uuid4()}.tmp'
     temp_path = f'$env:TEMP\\{temp_file}'
 
